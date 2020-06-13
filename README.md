@@ -1,24 +1,23 @@
-# trainingprogram
-
-## Project setup
+#### 项目准备
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### 项目启动
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### 项目打包
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+#### 项目简介
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+------------
+这是一个后台管理的前后端分离项目，基于Vue和element-ui构建，使用到了动态路由，登录验证，文件上传，运用axios与后端的CRUD衔接等功能特性。
+同时，这也是一个不错的学习项目，笔者第一次使用到前后端分离现如今十分流行的技术架构，十分认同前后端分离架构是一种趋势。
+------------
+目前实现功能：登录验证，数据的增删查改，分页的显示，前端界面el-loading优化，dom渲染发生改变时页面刷新细节优化，友好的交互效果等功能。
+###### 学习项目，仅供参考。
