@@ -52,9 +52,9 @@
           <td class="value" colspan="2">专业/课程</td>
         </tr>
         <tr>
-          <td class="value" colspan="2"></td>
-          <td class="value" colspan="2"></td>
-          <td class="value" colspan="2"></td>
+          <td class="value" colspan="2">2018-2021</td>
+          <td class="value" colspan="2">深圳信息职业技术学院</td>
+          <td class="value" colspan="2">软件技术</td>
         </tr>
         <tr>
           <td class="value" colspan="2"></td>
@@ -174,7 +174,7 @@
     width:30px;
     height:30px;
     border:1px solid #333;
-    background: #f1f1f1;
+    background: #ecf5ff;
   }
   .value{
     width:70px;

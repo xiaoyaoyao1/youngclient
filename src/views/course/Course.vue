@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button @click="addCourse" type="text" size="big">添加课程
+    <el-button @click="addCourse" type="primary" size="small" icon="el-icon-plus" style="margin-bottom: 15px">添加课程
     </el-button>
     <el-table
         :data="course"
@@ -38,7 +38,7 @@
           header-align="center">
         <template scope="scope">
 <!--          　<img :src="scope.row.cover" width="80" height="70"/>-->
-          <el-avatar shape="square" :size="80" fit="fill" :src="scope.row.cover"></el-avatar>
+          <el-image style="width: 80px; height: 80px" :src="scope.row.cover"></el-image>
         </template>
       </el-table-column>
       <el-table-column
@@ -80,7 +80,7 @@
           align="center"
           header-align="center">
         <template slot-scope="scope">
-          <el-button @click="editCourse(scope.row)" type="text" size="small">编辑</el-button>
+          <el-button @click="editCourse(scope.row)" size="small" type="primary" icon="el-icon-edit" circle></el-button>
           <el-popconfirm
               confirmButtonText='确定'
               cancelButtonText='取消'
@@ -89,7 +89,7 @@
               title="确定删除该课程吗？"
               @onConfirm="deleteCourse(scope.row)"
           >
-          <el-button slot="reference" type="text" size="small">删除</el-button>
+          <el-button slot="reference" size="small" type="danger" icon="el-icon-delete" circle style="margin-left: 5px"></el-button>
           </el-popconfirm>
         </template>
       </el-table-column>
@@ -102,9 +102,8 @@
         @current-change="page">
     </el-pagination>
 
-    <!--编辑-->
+    <!--编辑--> <!--:close-on-click-modal="false" 点击空白不会关闭弹窗-->
     <el-dialog
-        :close-on-click-modal="false"
         title="编辑课程"
         :visible.sync="centerDialogVisible"
         width="30%"
@@ -112,21 +111,21 @@
         @close="closeDialog"
         center>
       <!--      <span>需要注意的是内容是默认不居中的</span>-->
-      <el-form :model="editForm" ref="editForm" label-width="120px" class="demo-ruleForm">
-        <el-form-item label="课程名称" prop="title">
+      <el-form :model="editForm" ref="editForm" label-width="80px" class="demo-ruleForm">
+        <el-form-item label="课程名称" prop="title" style="width: 75%">
           <el-input v-model="editForm.title"></el-input>
         </el-form-item>
-        <el-form-item label="课程类别" prop="ctype">
+        <el-form-item label="课程类别" prop="ctype" style="width: 50%">
           <el-select v-model="editForm.ctype" placeholder="请选择课程类别">
             <el-option label="语文" value="语文"></el-option>
             <el-option label="数学" value="数学"></el-option>
             <el-option label="英语" value="英语"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="课程价格" prop="price" style="width:60%">
+        <el-form-item label="课程价格" prop="price" style="width:40%">
           <el-input v-model="editForm.price"></el-input>
         </el-form-item>
-        <el-form-item label="课程级别" prop="clevel">
+        <el-form-item label="课程级别" prop="clevel" style="width: 40%">
           <el-select v-model="editForm.clevel" placeholder="请选择课程级别">
             <el-option label="初级" value="初级"></el-option>
             <el-option label="中级" value="中级"></el-option>
@@ -148,13 +147,13 @@
               :file-list="fileList"
               :on-exceed="handleExceed">
             <!--          :auto-upload="true"-->
-            <el-button size="small" type="primary">点击上传</el-button>
+            <el-button size="small" type="primary" icon="el-icon-upload" plain>点击上传</el-button>
           </el-upload>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="courseEdit">修 改</el-button>
+    <el-button @click="centerDialogVisible = false" plain>取 消</el-button>
+    <el-button type="primary" @click="courseEdit" plain>修 改</el-button>
       </span>
     </el-dialog>
 

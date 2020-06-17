@@ -7,8 +7,8 @@
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-menu"></i>首页</template>
 <!--            <router-link to="/user/:userId/course"></router-link>-->
-            <el-menu-item index="1-1" @click="courseClick">教育课程</el-menu-item>
-            <el-menu-item index="1-2" @click="serviceClick">服务内容</el-menu-item>
+            <el-menu-item index="1-1" @click="courseClick"><i class="el-icon-reading"></i>教育课程</el-menu-item>
+            <el-menu-item index="1-2" @click="serviceClick"><i class="el-icon-service"></i>服务内容</el-menu-item>
 <!--            <router-link to="'/user/'+userId/service">服务内容</router-link>-->
           </el-submenu>
           <el-submenu index="2">

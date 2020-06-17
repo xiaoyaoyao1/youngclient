@@ -1,16 +1,21 @@
 <template>
+  <!--active-text-color="#ffd04b"  text-color="#fff"-->
   <div>
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="activeIndex"
         class="el-menu-demo"
         mode="horizontal"
-        background-color="#B3C0D1"
-        text-color="#fff"
-        active-text-color="#ffd04b">
+        background-color="#ecf5ff"
+        style="border-color: #b3d8ff; color: #409EFF">
       <el-menu-item index="1" style="margin-left:112px" @click="indexClick">首页</el-menu-item>
       <el-menu-item index="2" @click="myProfileClick">个人信息</el-menu-item>
       <el-menu-item index="3" @click="skillClick">个人技能</el-menu-item>
     </el-menu>
+    <!--<el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="首页" name="index" @click="indexClick"></el-tab-pane>
+      <el-tab-pane label="个人信息" name="mine" @click="myProfileClick"></el-tab-pane>
+      <el-tab-pane label="个人优势" name="skill" @click="skillClick"></el-tab-pane>
+    </el-tabs>-->
     <el-main class="profile-loading-area">
       <router-view></router-view>
     </el-main>
@@ -22,10 +27,15 @@
     name: "Profile",
     data() {
       return {
-        activeIndex2: '1'
+        activeIndex: '1'
+        // activeName: 'index'
       }
     },
     methods: {
+      /*handleClick(tab, event) {
+        console.log(tab, event);
+      },*/
+
       indexClick() {
         let userId = this.$route.params.userId
         this.$router.push("/user/"+userId+"/profile/index")
@@ -75,6 +85,5 @@
 <style scoped>
 .el-menu-demo {
   width: 500px;
-  overflow-x:hidden;
 }
 </style>

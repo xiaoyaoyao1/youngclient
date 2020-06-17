@@ -1,12 +1,19 @@
 <template>
   <div>
-    <el-card class="box-card">
-      <ul>
-        <li v-for="item in skill" class="text item">
-          <span>{{item}}</span>
-        </li>
-      </ul>
-    </el-card>
+    <el-carousel :interval="4000" type="card" height="400px">
+      <el-carousel-item v-for="item in 3" :key="item">
+        <h3 class="medium">
+          <el-card class="box-card">
+            <ul>
+              <li v-for="item in skill" class="text item" style="list-style: none">
+                <span>{{item}}</span>
+              </li>
+            </ul>
+          </el-card>
+        </h3>
+      </el-carousel-item>
+    </el-carousel>
+
   </div>
 </template>
 
@@ -41,7 +48,7 @@
   }
 
   .box-card {
-    background-color: #EBEEF5;
+    background-color: #ecf5ff;
     margin-top: 10px
   }
 </style>

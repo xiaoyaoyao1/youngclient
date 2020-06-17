@@ -11,7 +11,7 @@ VueRouter.prototype.push = function push(location) {
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].common) for this route

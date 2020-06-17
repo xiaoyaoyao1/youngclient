@@ -1,6 +1,6 @@
 <template>
   <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-    <el-form-item label="课程名称" prop="title" style="width:30%">
+    <el-form-item label="课程名称" prop="title" style="width:25%">
       <el-input v-model="ruleForm.title" id="focus"></el-input>
     </el-form-item>
     <el-form-item label="课程类别" prop="ctype">
@@ -34,13 +34,13 @@
           :limit="1"
           :on-exceed="handleExceed">
         <!--          :auto-upload="true"-->
-        <el-button size="small" type="primary">点击上传</el-button>
+        <el-button size="small" type="primary" icon="el-icon-upload" plain>点击上传</el-button>
       </el-upload>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">发布</el-button>
+      <el-button type="primary" @click="submitForm('ruleForm')" plain>发布</el-button>
       <!--      <el-button @click="publish()">发布</el-button>-->
-      <el-button @click="resetForm('ruleForm')">重置</el-button>
+      <el-button @click="resetForm('ruleForm')" plain>重置</el-button>
     </el-form-item>
   </el-form>
 </template>

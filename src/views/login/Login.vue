@@ -1,22 +1,24 @@
 <template>
   <div class="login-container">
-    <el-form :model="ruleForm2" :rules="rules2"
+    <el-form :model="ruleForm" :rules="rules"
              status-icon
-             ref="ruleForm2"
+             ref="ruleForm"
              label-position="left"
              label-width="0px"
              class="demo-ruleForm login-page">
-      <h3 class="title">益YOUNG后台管理系统</h3>
+      <h3 class="title">益YOUNG后台管理系统
+      <i class="el-icon-s-promotion"></i>
+      </h3>
       <el-form-item prop="username">
         <el-input type="text"
-                  v-model="ruleForm2.username"
+                  v-model="ruleForm.username"
                   auto-complete="off"
                   placeholder="用户名"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password"
-                  v-model="ruleForm2.password"
+                  v-model="ruleForm.password"
                   auto-complete="off"
                   placeholder="密码"
         ></el-input>
@@ -33,17 +35,18 @@
   </div>
 </template>
 
+
 <script>
 
   export default {
     data() {
       return {
         logining: false,
-        ruleForm2: {
+        ruleForm: {
           username: 'admin',
           password: '123456',
         },
-        rules2: {
+        rules: {
           username: [{required: true, message: '请输入您的账号', trigger: 'blur'}],
           password: [{required: true, message: '请输入您的密码', trigger: 'blur'}]
         },
@@ -52,28 +55,35 @@
     },
     methods: {
       handleSubmit(event) {
-        this.$refs.ruleForm2.validate((valid) => {
+        this.$refs.ruleForm.validate((valid) => {
           if (valid) {
-            this.logining = true;
-            if (this.ruleForm2.username === 'admin' &&
-                this.ruleForm2.password === '123456') {
-              this.logining = false;
-              sessionStorage.setItem('user', this.ruleForm2.username);
+            this.logining = true
+            if (this.ruleForm.username === 'admin' &&
+                this.ruleForm.password === '123456') {
+              this.logining = false
+              sessionStorage.setItem('user', this.ruleForm.username)
               this.$router.push({
-                path: '/user/'+this.ruleForm2.username
-              });
+                path: '/user/'+this.ruleForm.username
+              })
+              this.$message({
+                showClose: true,
+                message: '欢迎您'+this.ruleForm.username,
+                type: 'success'
+              })
              /* this.$axios.get('http://localhost:8081/edu').then(function (response) {
                 console.log(response)
               })*/
             } else {
               this.logining = false;
-              this.$alert('账号或密码错误', '提示', {
-                confirmButtonText: 'ok'
+              this.$message({
+                showClose: true,
+                message: '您输入的账号或密码不正确',
+                type: 'error'
               })
             }
           } else {
-            console.log('error submit!');
-            return false;
+            console.log('error submit!')
+            return false
           }
         })
       }
