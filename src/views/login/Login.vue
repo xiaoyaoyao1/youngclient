@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
-    <el-form :model="ruleForm" :rules="rules"
+    <el-form :model="loginForm" :rules="rules"
              status-icon
-             ref="ruleForm"
+             ref="loginForm"
              label-position="left"
              label-width="0px"
              class="demo-ruleForm login-page">
@@ -11,25 +11,24 @@
       </h3>
       <el-form-item prop="username">
         <el-input type="text"
-                  v-model="ruleForm.username"
+                  v-model="loginForm.username"
                   auto-complete="off"
                   placeholder="用户名"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password"
-                  v-model="ruleForm.password"
+                  v-model="loginForm.password"
                   auto-complete="off"
                   placeholder="密码"
+                  @keyup.enter.native="onLogin"
         ></el-input>
       </el-form-item>
-      <el-checkbox
-          v-model="checked"
-          class="rememberme"
-      >记住密码
-      </el-checkbox>
+      <el-form-item label="记住密码" label-width="80px">
+        <el-switch v-model="remember"></el-switch>
+      </el-form-item>
       <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click="handleSubmit" :loading="logining">登录</el-button>
+        <el-button type="primary" style="width:100%;" @click="onLogin('loginForm')" :loading="logining">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -38,11 +37,12 @@
 
 <script>
 
+  import {saveToLocal,loadFromLocal} from "../../common/local-storage";
   export default {
     data() {
       return {
         logining: false,
-        ruleForm: {
+        loginForm: {
           username: 'admin',
           password: '123456',
         },
@@ -50,24 +50,33 @@
           username: [{required: true, message: '请输入您的账号', trigger: 'blur'}],
           password: [{required: true, message: '请输入您的密码', trigger: 'blur'}]
         },
-        checked: false
+        remember: false
+      }
+    },
+    created() {
+      // 初始化时读取localStorage用户信息
+      if (loadFromLocal('remember', false)) {
+        this.loginForm.username = loadFromLocal('username', '')
+        this.loginForm.pwd = loadFromLocal('password', '')
+      } else {
+        this.loginForm.username = ''
+        this.loginForm.password = ''
       }
     },
     methods: {
-      handleSubmit(event) {
-        this.$refs.ruleForm.validate((valid) => {
+      onLogin() {
+        this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.logining = true
-            if (this.ruleForm.username === 'admin' &&
-                this.ruleForm.password === '123456') {
-              this.logining = false
-              sessionStorage.setItem('user', this.ruleForm.username)
+            if (this.loginForm.username === 'admin' &&
+                this.loginForm.password === '123456') {
+              this.$store.commit('SET_USER',this.loginForm.username)
               this.$router.push({
-                path: '/user/'+this.ruleForm.username
+                path: '/user/'+this.loginForm.username
               })
               this.$message({
                 showClose: true,
-                message: '欢迎您'+this.ruleForm.username,
+                message: '欢迎您'+this.loginForm.username,
                 type: 'success'
               })
              /* this.$axios.get('http://localhost:8081/edu').then(function (response) {
