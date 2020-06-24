@@ -16,16 +16,11 @@ const state = new Vuex.Store({
     }
   },
   actions: {
-
   },
   getters: {
-
   },
   modules: {
-
   }
 })
-
-
 
 export default state

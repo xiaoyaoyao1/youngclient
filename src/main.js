@@ -18,7 +18,7 @@ router.beforeEach(function(to,from,next) {
   let username = store.state.username;
   console.log(username)
   if (to.meta.requireAuth) {
-    if (username === 'admin') {
+    if (username != null) {
       next();
       return
     }
